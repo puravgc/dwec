@@ -409,6 +409,7 @@ li {
 
 .education {
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
   position: relative;
   background: #ffb6c1;
@@ -493,7 +494,7 @@ li {
   color: #fff;
   text-shadow: 0 0 3px #000;
   padding: 10px;
-  border-radius: 16px;
+  border-radius: 10px;
 }
 
 .education .educationHolder h3 {
@@ -539,11 +540,20 @@ li {
 }
 
 #readMore:hover {
-  background-color: var(--cream); /* Change background color on hover */
+  background-color: var(--cream);
 }
-@media screen and (max-width: 1440px) {
-  .educationContainer {
-    display: none;
+@media screen and (max-width: 1160px) {
+  .educationTitle {
+    font-size: 35px;
+  }
+  .education .educationHolder p {
+    font-size: 15px;
+  }
+  .education .educationHolder h3 {
+    font-size: 25px;
+  }
+  .educationTitle {
+    padding-bottom: 20px;
   }
 }
 
@@ -1049,7 +1059,7 @@ li {
   width: 50px; /* Adjust the width as per your requirement */
   height: auto; /* Maintain aspect ratio */
 }
-.contrast{
+.contrast {
   display: flex;
 }
 .backtotop {
@@ -1057,15 +1067,14 @@ li {
   bottom: 20px;
   right: 100px;
   z-index: 1000;
-
 }
 
 .backtotop button {
   background-color: #fff;
   border: none;
-  border-radius: 50%; 
-  width: 50px; 
-  height: 50px; 
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
   padding: 0;
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -1083,7 +1092,6 @@ li {
   flex-direction: column;
   align-items: flex-end;
   z-index: 1000; /* Ensure the buttons appear above other content */
-  
 }
 
 .accessibility-btn button {
@@ -1104,7 +1112,6 @@ li {
 .accessibility-btn button img {
   width: 20px; /* Set the width of the image */
   height: 20px; /* Set the height of the image */
-  
 }
 
 .accessibility-btn button:hover {
@@ -1222,9 +1229,6 @@ li {
 
   .articleContainer {
     width: 100%;
-  }
-  .education .educationHolder {
-    position: relative;
   }
 }
 

@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isprojDropdownOpen, setIsprojDropdownOpen] = useState(false);
   const [isabtDropdownOpen, setIsabtDropdownOpen] = useState(false);
   const [isMenuOpen, setisMenuOpen] = useState(false);
+  const [projectTitle, setprojectTitle] = useState([]);
   const { setuserlogin, userlogin } = useContext(LoginContext);
   const navigate = useNavigate();
 
@@ -33,8 +34,27 @@ const Navbar = () => {
     }
   }, []);
   useEffect(() => {
-    console.log(userlogin);
-  }, [userlogin]);
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/getproject", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+        if (!response.ok) {
+          throw new Error("Failed to fetch projects");
+        }
+        const data = await response.json();
+        const projectTitles = data.map((project) => project.title);
+        setprojectTitle(projectTitles);
+        console.log(data[0].title);
+      } catch (error) {
+        console.error("Error fetching projects:", error);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   return (
     <nav className="navbar" id="totop">
@@ -88,41 +108,13 @@ const Navbar = () => {
           </span>
           {isprojDropdownOpen && (
             <ul className="dropdown-menu">
-              <HashLink class="dropdown-item" smooth to="#0">
-                <HashLink smooth to="#0">
-                  Tewa{" "}
+              {projectTitle.map((title, index) => (
+                <HashLink class="dropdown-item" smooth to={"#" + index}>
+                  <HashLink smooth to={"#" + index}>
+                    {title}{" "}
+                  </HashLink>
                 </HashLink>
-              </HashLink>
-              <HashLink class="dropdown-item" smooth to="#1">
-                <HashLink smooth to="#1">
-                  Making Scents{" "}
-                </HashLink>
-              </HashLink>
-              <HashLink class="dropdown-item" smooth to="#2">
-                <HashLink smooth to="#2">
-                  MIUSA/CIL
-                </HashLink>
-              </HashLink>
-              <HashLink class="dropdown-item" smooth to="#3">
-                <HashLink smooth to="#3">
-                  Pokhara Metropolitan{" "}
-                </HashLink>
-              </HashLink>
-              <HashLink class="dropdown-item" smooth to="#4">
-                <HashLink smooth to="#4">
-                  NFDN{" "}
-                </HashLink>
-              </HashLink>
-              <HashLink class="dropdown-item" smooth to="#5">
-                <HashLink smooth to="#5">
-                  ABILIS{" "}
-                </HashLink>
-              </HashLink>
-              <HashLink class="dropdown-item" smooth to="#6">
-                <HashLink smooth to="#1">
-                  WFA{" "}
-                </HashLink>
-              </HashLink>
+              ))}
             </ul>
           )}
         </div>

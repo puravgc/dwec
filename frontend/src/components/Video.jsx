@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import video from "../assets/background video.mp4";
 import logo from "../assets/logo.png";
+import ytlogo from "../assets/youtube logo.png"
 const Video = () => {
   const [readmore, setreadmore] = useState(false);
   return (
     <div className="mainedu">
       <div class="education" id="disabilitySection">
-        <h2 class="educationTitle">Documentary</h2>
+        <h2 class="edu-cationTitle">Documentary</h2>
         <video autoPlay muted loop class="videoPlayer">
           <source src={video} type="video/mp4" className="source" />
           Your browser does not support HTML5 video.
@@ -54,7 +55,7 @@ const Video = () => {
                 href="https://www.youtube.com/watch?v=iXLaqS0G2qE&ab_channel=YouthPowerYP2LE"
                 target="_blank"
               >
-                <img src="youtube logo.png" alt="YouTube Icon" /> Click here to
+                <img src={ytlogo} alt="YouTube Icon" /> Click here to
                 watch
               </a>
             </div>
